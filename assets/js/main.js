@@ -183,6 +183,26 @@
 			breakpoints.on('>small', on);
 
 		}
+	// Contact Form
+	$('#contactus').on('submit', function(event) {
+		event.preventDefault(); // prevent reload
+		
+		var formData = new FormData(this);
+		formData.append('service_id', 'service_l60hj8z');
+		formData.append('template_id', 'template_mjo0xp8');
+		formData.append('user_id', '9q6DiuYJ5Ig4dMSC7');
+	 
+		$.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+			type: 'POST',
+			data: formData,
+			contentType: false, // auto-detection
+			processData: false // no need to parse formData to string
+		}).done(function() {
+			alert('Thanks for your enquiry!');
+		}).fail(function(error) {
+			alert('Oops... ' + JSON.stringify(error));
+		});
+	});
 
 	// Events.
 		var resizeTimeout, resizeScrollTimeout;
